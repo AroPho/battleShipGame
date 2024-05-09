@@ -1,12 +1,13 @@
 import express from 'express';
-import * as gameController from './controllers/gameController';
+import bodyParser from 'body-parser';
+import { gameRoutes } from './routes/gameRoutes';
 
-const router = express.Router();
+const app = express();
+const port = 3000;
 
-router.post('/create', gameController.createGame);
-router.post('/placeShip', gameController.placeShip);
-router.post('/attack', gameController.attack);
-router.get('/status', gameController.checkGameStatus);
+app.use(bodyParser.json());
+app.use('/game', gameRoutes);
 
-
-export { router as gameRoutes };
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});

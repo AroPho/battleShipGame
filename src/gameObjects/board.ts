@@ -19,6 +19,10 @@ export class Board {
     }
 
     addShip(shipSize: number, startX: number, startY: number, horizontal: boolean): string {
+        if(startX > 10 || startY > 10 || startX < 1 || startY < 1) {
+            return "Ship is out of bounds";
+        }
+    
         const ship = new Ship(shipSize);
 
         if (!this.shipSizes.has(ship.size)) {
