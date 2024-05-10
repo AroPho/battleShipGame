@@ -73,10 +73,11 @@ export const checkGameStatus = (req: Request, res: Response) => {
 export const getLeaderboard = (req: Request, res: Response) => {
   const leaderboardService = new LeaderboardService(Object.values(players));
   const leaderboard = leaderboardService.getLeaderboard();
-  res.status(200).json(leaderboard.map(player => ({
+  res.status(200).send({leaderboard: leaderboard.map(player => ({
       username: player.username,
       wins: player.winCount,
       losses: player.lossCount,
-      gamesPlayed: player.gamesPlayed.length
-  })));
+        gamesPlayed: player.gamesPlayed.length
+      }))
+    });
 };

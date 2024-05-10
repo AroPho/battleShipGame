@@ -3,11 +3,13 @@ import bodyParser from 'body-parser';
 import { gameRoutes } from './routes/gameRoutes';
 
 const app = express();
-const port = 3000;
 
 app.use(bodyParser.json());
 app.use('/game', gameRoutes);
 
-app.listen(port, () => {
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+export { app, server };
