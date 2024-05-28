@@ -14,6 +14,7 @@ function generateGameId(): string {
 }
 
 export const createGame = (req: Request, res: Response) => {
+  console.log(req.body);
   const { player1Name, player2Name } = req.body;
 
   // Check if players already exist or create new ones
